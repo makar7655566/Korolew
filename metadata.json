@@ -1,0 +1,14 @@
+{
+  "name": "ИИ Бот Все-в-Одном",
+  "description": "Продвинутый ИИ бот с функциями анализа фото, поиска в интернете, генерации изображений и голосового озвучивания на русском языке.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "vision",
+    "search",
+    "image-generation",
+    "tts"
+  ]
+}

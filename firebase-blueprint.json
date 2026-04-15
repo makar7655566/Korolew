@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "botName": { "type": "string" },
+        "background": { "type": "string" },
+        "difficulty": { "type": "string", "enum": ["easy", "hard"] },
+        "hasSeenOnboarding": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Session": {
+      "title": "Session",
+      "description": "Chat session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "userId", "title"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Chat message",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sessionId": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "assistant"] },
+        "content": { "type": "string" },
+        "timestamp": { "type": "number" },
+        "isImage": { "type": "boolean" },
+        "imageUrl": { "type": "string" }
+      },
+      "required": ["id", "sessionId", "role", "content"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/sessions/{sessionId}": {
+      "schema": "Session",
+      "description": "Chat sessions"
+    },
+    "/sessions/{sessionId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages within a session"
+    }
+  }
+}
